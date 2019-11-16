@@ -1,23 +1,37 @@
-const start = document.querySelector('#start');
-const stop = document.querySelector('#stop');
-const player = document.querySelector('audio');
+const mixer = document.querySelector('#mixer');
+mixer.addEventListener('click', (e) => {
+    const [ start, stop, audio ] = e.target.parentNode.children;
+    const id = e.target.parentNode.id;
+    
+    if (e.target === start) {
+        console.log(`clicked track-${id}`, start);
+        stop.disabled = false;
+        start.disabled = true;
+        
+        navigator.mediaDevices.getUserMedia({ audio: true, video: false })
+        .then((stream) => startRecording(stream, stop, audio));
+    }
+    
+    else if (e.target === stop) {
+        console.log(`clicked track-${id}`, stop);
+        stop.disabled = true;
+        start.disabled = false;
+    }
+});
 
-start.onclick = (e) => {
-    start.disabled = true;
-    stop.disabled = false;
-    navigator.mediaDevices.getUserMedia({ audio: true, video: false })
-      .then(startRecording);
+// start.onclick = (e) => {
+//     start.disabled = true;
+//     stop.disabled = false;
+    
 
-};
+// };
 
-function startRecording(stream) {
+function startRecording(stream, stopButton, audioElement) {
     const options = {mimeType: 'audio/webm'};
     const recordedChunks = [];
     const mediaRecorder = new MediaRecorder(stream, options);
 
-    stop.onclick = (e) => {
-        start.disabled = false;
-        stop.disabled = true;
+    stopButton.onclick = (e) => {
         mediaRecorder.stop();
     };
     
@@ -29,8 +43,8 @@ function startRecording(stream) {
     });
         
     mediaRecorder.addEventListener('stop', function() {
-        player.src = URL.createObjectURL(new Blob(recordedChunks));
-        player.hidden = false;
+        audioElement.src = URL.createObjectURL(new Blob(recordedChunks));
+        audioElement.hidden = false;
     });
         
     mediaRecorder.start();

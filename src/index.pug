@@ -2,9 +2,15 @@ doctype html
 html
     head
         title 4-track
+        link(href="styles/main.styl" rel="stylesheet")
     body
         main
-            button(id="start") start
-            button(id="stop" disabled) stop
-            audio(controls hidden)
+            section#mixer
+                - let trackNumber = 1
+                while trackNumber < 5
+                    div.track(id=trackNumber)
+                        button.start start
+                        button.stop(disabled) stop
+                        audio(controls hidden)
+                        - trackNumber++
         script(src="scripts/main.js")
