@@ -11,8 +11,14 @@ stopButton.addEventListener('click', () => startOrStop('stop'));
 function startOrStop (startorstop) {
     if (context.state === 'suspended') context.resume();
     
-    if (startorstop === 'start') transport.start();
-    else if (startorstop === 'stop') transport.stop();
+    if (startorstop === 'start') {
+        transport.start();
+        startButton.disabled = true;
+    }
+    else if (startorstop === 'stop') {
+        transport.stop();
+        startButton.disabled = false;
+    }
 }
 
 const mixer = document.querySelector('#mixer');
