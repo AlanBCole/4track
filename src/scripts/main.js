@@ -1,3 +1,20 @@
+import Transport from './models/Transport.js';
+
+let context = new AudioContext();
+const transport = new Transport(context);
+
+const startButton = document.querySelector('#play');
+const stopButton = document.querySelector('#stop');
+startButton.addEventListener('click', () => startOrStop('start'));
+stopButton.addEventListener('click', () => startOrStop('stop'));
+
+function startOrStop (startorstop) {
+    if (context.state === 'suspended') context.resume();
+    
+    if (startorstop === 'start') transport.start();
+    else if (startorstop === 'stop') transport.stop();
+}
+
 const mixer = document.querySelector('#mixer');
 mixer.addEventListener('click', (e) => {
     const [ start, stop, audio ] = e.target.parentNode.children;
