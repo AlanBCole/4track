@@ -5,16 +5,33 @@ html
         link(href="styles/main.styl" rel="stylesheet")
     body
         main
-            section#mixer
+            section#left
                 - let trackNumber = 1
                 while trackNumber < 5
-                    div.track(id=trackNumber)
-                        button.start start
-                        button.stop(disabled) stop
-                        audio(controls hidden)
+                    .track(id=trackNumber)
+                        // button.start start
+                        // button.stop(disabled) stop
+                        label(for=`gain${trackNumber}`) Gain #{trackNumber}
+                            input(type="range" id=`gain${trackNumber}`)
+                        label(for=`pan${trackNumber}`) Pan #{trackNumber}
+                            input(type="range" id=`pan${trackNumber}`)
+                        button(id=`rec${trackNumber}`) rec
+                        // audio(controls hidden)
                         - trackNumber++
-            
-            section#transport
-                button#play play
-                button#stop stop
+                        
+            section#right
+                #master
+                    label(for="masterGain") Master Gain
+                    input(type="range" id="masterGain")
+                    
+                #input
+                    label(for="inputGain") Input Gain
+                    input(type="range" id="inputGain")
+                #transport
+                    div
+                        label(for="songPosition")
+                            input(type="text" value="0" id="songPosition")
+                    button#record record
+                    button#play play
+                    button#stop stop
         script(src="scripts/main.js")
