@@ -1,4 +1,4 @@
-import Transport from './models/Transport.js';
+import Transport from '../models/transport.model.js';
 
 let context = new AudioContext();
 

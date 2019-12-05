@@ -1,11 +1,22 @@
+basicSpacing = .5rem
+
 main
     display flex
-    margin 16px
+    margin calc(basicSpacing * 2)
     border 2px solid grey
-    border-radius 8px
+    border-radius basicSpacing
+
+.item-box
+    padding .5rem
+    
+.item-box label,
+.item-box input
+    display block
 
 .track
-    padding 8px
+    display flex
+    align-items center
+    padding basicSpacing
 
 #left
     width 65%
@@ -19,8 +30,8 @@ main
 #right
     width 35%
 #master
-    padding 8px
+    padding basicSpacing
 #input
-    padding 8px
+    padding basicSpacing
 #transport
-    padding 8px
+    padding basicSpacing

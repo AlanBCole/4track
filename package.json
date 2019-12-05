@@ -4,14 +4,19 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js",
-    "dev": "parcel src/index.pug"
+    "build": "parcel build src/views/index.pug",
+    "start": "parcel src/index.pug",
+    "test": "jest"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@babel/core": "^7.7.4",
+    "@babel/preset-env": "^7.7.4",
+    "babel-jest": "^24.9.0",
+    "jest": "^24.9.0",
+    "parcel": "^1.12.4",
     "parcel-bundler": "^1.12.4",
     "pug": "^2.0.4",
     "stylus": "^0.54.7"

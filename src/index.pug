@@ -2,36 +2,34 @@ doctype html
 html
     head
         title 4-track
-        link(href="styles/main.styl" rel="stylesheet")
+        link(href="/styles/main.styl" rel="stylesheet")
     body
         main
             section#left
                 - let trackNumber = 1
                 while trackNumber < 5
-                    .track(id=trackNumber)
+                    section.track(id=trackNumber)
                         // button.start start
                         // button.stop(disabled) stop
-                        label(for=`gain${trackNumber}`) Gain #{trackNumber}
+                        .item-box
+                            label(for=`gain${trackNumber}`) Gain #{trackNumber}
                             input(type="range" id=`gain${trackNumber}`)
-                        label(for=`pan${trackNumber}`) Pan #{trackNumber}
+                        .item-box
+                            label(for=`pan${trackNumber}`) Pan #{trackNumber}
                             input(type="range" id=`pan${trackNumber}`)
                         button(id=`rec${trackNumber}`) rec
                         // audio(controls hidden)
                         - trackNumber++
                         
             section#right
-                #master
-                    label(for="masterGain") Master Gain
-                    input(type="range" id="masterGain")
+                section#master
+                    .item-box
+                        label(for="masterGain") Master Gain
+                        input(type="range" id="masterGain")
                     
-                #input
-                    label(for="inputGain") Input Gain
-                    input(type="range" id="inputGain")
-                #transport
-                    div
-                        label(for="songPosition")
-                            input(type="text" value="0" id="songPosition")
-                    button#record record
-                    button#play play
-                    button#stop stop
-        script(src="scripts/main.js")
+                section#input
+                    .item-box
+                        label(for="inputGain") Input Gain
+                        input(type="range" id="inputGain")
+                include views/transport.pug
+        script(src="/controllers/main.js")
