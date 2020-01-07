@@ -8,7 +8,7 @@ const transport = new Transport(context);
 const transportContainer = document.querySelector('#transport');
 const startButton = document.querySelector('#play');
 const stopButton = document.querySelector('#stop');
-const transportDisplay = document.querySelector('#songPosition');
+const songPosition = document.querySelector('#songPosition');
 transportContainer.addEventListener('headMove', (event) => event.target.value = event.detail.time.toFixed(2));
 startButton.addEventListener('click', () => startOrStop('start'));
 stopButton.addEventListener('click', () => startOrStop('stop'));
